@@ -1,0 +1,87 @@
+package myAaary;
+
+/**
+ * 数组操作实现
+ */
+public class myArray {
+    char[] cNum={'0','1','2','3','4','5','6','7','8','9'};
+    char[] cStr={'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p', 'q','r','s','t','u','v','w','x','y','z'};
+    char[] iMonth={31,28,31,30,31,30,31,31,30,31,30,31};
+    String[] sMail = {"@","."};
+
+    /**
+     *  检验是否符合邮箱规则
+     *  输入：String sPara
+     *  输出：boolean
+     */
+    public boolean isMail(String sPara) {
+        for (int i = 0; i <sMail.length ; i++) {
+            if(sPara.indexOf(sMail[i])==-1)
+                return false;
+        }
+        return true;
+    }
+    /**
+     *  方法：检验是否是数字串
+     *  in:String sPara
+     *  out:boolean
+     */
+    public boolean isNumber(String sPara){
+        int iPLength = sPara.length();
+        for (int i = 0; i < iPLength ; i++) {
+            char cTemp = sPara.charAt(i);
+            boolean bTemp = false;
+            for (int j = 0; j <cNum.length ; j++) {
+                if(cNum[j] == cTemp){
+                    bTemp = true;
+                    break;
+                }
+            }
+            if(!bTemp)
+                return false;
+        }
+        return true;
+    }
+
+    /**
+     * 方法：判断字符串是否都是字母
+     * in: String sPara
+     * out: boolean
+     * @param args
+     */
+    public boolean isEnglish(String sPara){
+        int iPLength = sPara.length();
+        for (int i = 0; i < iPLength ; i++) {
+            char cTem = sPara.charAt(i);
+            boolean bTem = false;
+            for (int j = 0; j < cStr.length ; j++) {
+                if(cTem == cStr[j]){
+                    bTem = true;
+                    break;
+                }
+            }
+            if(!bTem)
+                return false;
+        }
+        return true;
+    }
+
+    /**
+     * 方法：判断是否是闰年
+     * in: int sPara
+     * out: boolean
+     * @param args
+     */
+    public boolean isRyear(int sPara){
+        return  sPara%100!=0&&sPara%4==0||sPara%400==0;
+    }
+
+
+    public static void main(String[] args){
+        myArray mA = new myArray();
+        System.out.println(mA.isMail("guo755@hrbeu.edu.cn"));
+        System.out.println(mA.isNumber("123456"));
+        System.out.println(mA.isRyear(1900));
+    }
+}
+
