@@ -1,0 +1,78 @@
+
+import java.util.Hashtable;
+
+/**
+ * 方法：对哈希表进行操作，关于权限认证
+ */
+public class RoleRight {
+    private static Hashtable rightList = new Hashtable();
+    /**
+     * 方法：初始化数据
+     */
+    public void init(){
+        String[] accRoleList = {"admin","satrap","manager","user","guest"};
+        String[] rightCodeList = {"10001","10011","10021","20011","24011"};
+        for (int i = 0; i < accRoleList.length; i++) {
+            rightList.put(accRoleList[i],rightCodeList[i]);
+        }
+    }
+    /**
+     * 方法：获取权限代码
+     * in: String accRole
+     * out: String
+     */
+    public String getRight(String accRole){
+        if (rightList.containsKey(accRole))
+            return (String)rightList.get(accRole);
+        return null;
+    }
+    /**
+     * 方法：添加用户和权限代码
+     * in: String accRole,String rightCode
+     * out:null;
+     */
+    public void insertRightList(String accRole,String rightCode){
+        rightList.put(accRole,rightCode);
+    }
+    /**
+     * 方法：删除用户和角色权限
+     * in: String accRole
+     * out： null
+     */
+    public void deleteRightList(String accRole){
+        if (rightList.containsKey(accRole))
+            rightList.remove(accRole);
+    }
+    /**
+     * 方法：修改角色权限代码
+     * in: String accRole,String rightCode
+     * out: null
+     */
+    public void changeRightCode(String accRole,String rightCode){
+        if (rightList.containsKey(accRole))
+            rightList.replace(accRole,rightCode);
+    }
+    /**
+     * 方法：打印哈希表中的所有关系
+     * in:null
+     * out: null
+     */
+    public void printAllRightList(){
+        System.out.println(rightList.toString());
+    }
+
+    /**
+     * idea 中快捷添加main函数  psvm
+     * @param args
+     */
+    public static void main(String[] args) {
+        RoleRight RR= new RoleRight();
+
+        RR.init();
+        RR.printAllRightList();
+        RR.insertRightList("guokun","99999");
+        RR.printAllRightList();
+        RR.changeRightCode("admin","10000");
+        RR.printAllRightList();
+    }
+}
