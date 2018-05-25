@@ -1,0 +1,49 @@
+package newPlay;
+
+/**
+ * 实现抽象类和接口
+ * 继承抽象类的子类必须实现抽象类的抽象函数
+ */
+
+/**
+ * 接口
+ */
+interface player{
+    int flag = 1;
+    void play();
+    void pause();
+    void stop();
+}
+
+/**
+ * 抽象类
+ */
+abstract class playing{
+    public void show(Object o)
+    {
+        System.out.println(o.toString());
+    }
+    abstract void winRun();
+}
+public class newPlay extends playing implements player{
+    public void play(){
+        show("newPlay.play()");
+    }
+    public void pause(){
+        show("newPlay.pause()");
+    }
+    public void stop(){
+        show("newPlay.stop()");
+    }
+    public void winRun(){
+        show("newPlay.winRun()");
+    }
+
+    public static void main(String[] args) {
+        newPlay nP = new newPlay();
+        nP.play();
+        nP.pause();
+        nP.stop();
+        nP.winRun();
+    }
+}
