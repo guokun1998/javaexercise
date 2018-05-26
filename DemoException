@@ -1,0 +1,55 @@
+package DemoException;
+
+/**
+ * 对异常的捕捉与处理
+ */
+class MyException extends Exception{
+    private int i;
+    public MyException(){};
+    public MyException(String msg){
+        super(msg);
+    }
+    public MyException(String msg,int x){
+        super(msg);
+        i = x;
+    }
+    public int val(){
+        return i;
+    }
+}
+public class DemoException {
+    public static void a() throws MyException{
+        System.out.println("a()throw");
+        throw new MyException();
+    }
+    public static void b() throws MyException{
+        System.out.println("b()throw");
+        throw new MyException("b()`s exception");
+    }
+    public static void c() throws MyException{
+        System.out.println("c()throw");
+        throw new MyException("c`s exception",01);
+    }
+
+    public static void main(String[] args) {
+        try {
+            a();
+        }catch (MyException e){
+            System.out.println(e.getMessage());
+            System.out.println(e.toString());
+        }
+        try {
+            b();
+        }catch (MyException e){
+            System.out.println(e.getMessage());
+            System.out.println(e.toString());
+        }
+        try {
+            c();
+        }catch (MyException e){
+            System.out.println(e.getMessage());
+            System.out.println(e.toString());
+            System.out.println("errorcode:"+e.val());
+        }
+    }
+}
